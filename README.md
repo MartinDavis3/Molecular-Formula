@@ -1,3 +1,3 @@
-# Hangman-game-exercise
-Class exercise to produce JavaScript code for a hangman game.
-Completed exercise.
+# Molecular-Formula
+A tool to calculate molecular formula, molecular weight and mole and weight fractions from a chemical formula. 
+***Under Construction***
