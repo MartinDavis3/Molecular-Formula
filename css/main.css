@@ -11,8 +11,8 @@ h1 {
     margin: 24px;
 }
 
-article {
-    max-width: 1000px;
+header, article, footer {
+    width: 550px;
     margin: 24px;
 }
 
@@ -21,6 +21,7 @@ form label, form input {
     width: 230px;
     font-size: 18px;
     margin-bottom: 16px;
+    padding: 2px;
 }
 
 #output p {
@@ -29,8 +30,13 @@ form label, form input {
     margin-bottom: 20px;
 }
 
-#output sub {
+sub {
     vertical-align: sub;
+    font-size: 16px;
+}
+
+sup {
+    vertical-align: super;
     font-size: 16px;
 }
 
@@ -47,4 +53,9 @@ th, td {
     vertical-align: middle;
     border: 1px solid black;
     height: 26px;    
+}
+
+footer {
+    font-size: 12px;
+    line-height: 14px;
 }

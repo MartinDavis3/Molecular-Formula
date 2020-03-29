@@ -12,12 +12,14 @@
         <script type="text/javascript" src="./js/scripts.js" defer></script>
     </head>
     <body>
-        <h1>Molecular Formula and Mole and Weight Fractions</h1>
+        <header></header>
+            <h1>Molecular Formula and Mole and Weight Fractions</h1>
+        </header>
         <article>
             <section>
                 <form id="input-form" action="#" method="GET">
                     <label for="chem-formula-input">
-                        Enter a chemical formula
+                        Enter a chemical formula *
                         <input id="chem-formula-input" name="guess-input" type="text" autocomplete="off">
                     </label>
                     <input id="submit" type="submit" value="Enter">
@@ -37,5 +39,10 @@
                 </table>
             </section>
         </article>
+        <footer>
+            <p>* The formula must be a correctly formed chemical formulae. (i.e. correct capitalisation of element symbols, no spaces or other extra characters, numbers greater than 1).</p>
+            <p>N.B. The elements Tc, Pm and all elements heavier than Bi (apart from Th, Pa and U) are excluded, since their natural isotopic abundance is too variable.</p>
+        </footer>
+        </footer>
     </body>
 </html>

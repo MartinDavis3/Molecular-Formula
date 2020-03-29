@@ -116,7 +116,7 @@ const calcNumAtoms = ( molFormula ) => {
     return totNumAtoms;
 }
 
-const outPrecision = 4;
+const outPrecisionTable = 4, outPrecisionMolWt = 6;
 var currChemFormula, currOutputString, currNumAtoms, currMolWt;
 var currMolFormula = new Map();
 var outputFormula, outputMolWt, outputTable;
@@ -138,7 +138,7 @@ inputForm.addEventListener( 'submit', function ( event ) {
     
     outputMolWt = document.getElementById( 'mol-weight' );
     currMolWt = calcMolWeight( currMolFormula );
-    outputMolWt.innerHTML = currMolWt;
+    outputMolWt.innerHTML = currMolWt.toPrecision(outPrecisionMolWt);
 
     currNumAtoms = calcNumAtoms( currMolFormula );
 
@@ -148,10 +148,10 @@ inputForm.addEventListener( 'submit', function ( event ) {
         currOutputString += '<tr>';
         currOutputString += '<td>' + chemSymb + '</td>';
         let atMolPercent= 100 * numAtoms / currNumAtoms;
-        currOutputString += '<td>' + atMolPercent.toPrecision(outPrecision) + '</td>';
+        currOutputString += '<td>' + atMolPercent.toPrecision(outPrecisionTable) + '</td>';
         let atomsWeight = Number( numAtoms ) * Number( atomicWeight.get( chemSymb ) );
         let atWtPercent = 100 * atomsWeight / currMolWt;
-        currOutputString += '<td>' + atWtPercent.toPrecision(outPrecision) + '</td>';
+        currOutputString += '<td>' + atWtPercent.toPrecision(outPrecisionTable) + '</td>';
         currOutputString += '</tr>';
     }
     outputTable.innerHTML = currOutputString;
