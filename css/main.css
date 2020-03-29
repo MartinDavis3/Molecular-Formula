@@ -26,9 +26,25 @@ form label, form input {
 #output p {
     font-size: 20px;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 #output sub {
     vertical-align: sub;
-    font-size: 18px;
+    font-size: 16px;
+}
+
+table {
+    width: 50%;
+    /* height: 30px; */
+    border: 1px solid black;
+    border-collapse: collapse;
+
+}
+
+th, td {
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid black;
+    height: 26px;    
 }

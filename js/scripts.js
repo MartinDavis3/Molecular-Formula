@@ -101,19 +101,28 @@ const calcMolWeight = ( molFormula ) => {
     for (let [chemSymb, numAtoms] of molFormula.entries() ) {
         if ( atomicWeight.has( chemSymb ) ) {
             molWeight += Number( numAtoms ) * Number( atomicWeight.get( chemSymb ) );   
-            // console.log(chemSymb, molWeight)
         } else {
-            console.log('not found');
             molWeight = undefined;
         }
     }
     return molWeight;
 }
 
-var currChemFormula, currOutputString, outputFormula, outputMolWt;
+const calcNumAtoms = ( molFormula ) => {
+    var totNumAtoms = Number(0)
+    for (let [chemSymb, numAtoms] of molFormula.entries() ) {
+            totNumAtoms += Number( numAtoms );   
+    }
+    return totNumAtoms;
+}
+
+const outPrecision = 4;
+var currChemFormula, currOutputString, currNumAtoms, currMolWt;
 var currMolFormula = new Map();
+var outputFormula, outputMolWt, outputTable;
 var inputForm = document.getElementById( 'input-form' );
 var inputBox = document.getElementById( 'chem-formula-input' );
+// inputBox.value = 'CH3COOH';
 
 // Form submission listener
 inputForm.addEventListener( 'submit', function ( event ) {
@@ -128,7 +137,24 @@ inputForm.addEventListener( 'submit', function ( event ) {
     outputFormula.innerHTML = currOutputString;
     
     outputMolWt = document.getElementById( 'mol-weight' );
-    outputMolWt.innerHTML = calcMolWeight( currMolFormula );
+    currMolWt = calcMolWeight( currMolFormula );
+    outputMolWt.innerHTML = currMolWt;
+
+    currNumAtoms = calcNumAtoms( currMolFormula );
+
+    outputTable = document.getElementById( 'table-output' );    
+    currOutputString = '';
+    for (let [chemSymb, numAtoms] of currMolFormula.entries() ) {
+        currOutputString += '<tr>';
+        currOutputString += '<td>' + chemSymb + '</td>';
+        let atMolPercent= 100 * numAtoms / currNumAtoms;
+        currOutputString += '<td>' + atMolPercent.toPrecision(outPrecision) + '</td>';
+        let atomsWeight = Number( numAtoms ) * Number( atomicWeight.get( chemSymb ) );
+        let atWtPercent = 100 * atomsWeight / currMolWt;
+        currOutputString += '<td>' + atWtPercent.toPrecision(outPrecision) + '</td>';
+        currOutputString += '</tr>';
+    }
+    outputTable.innerHTML = currOutputString;
 
 } );
 
