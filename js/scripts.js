@@ -12,8 +12,8 @@ const mergeFormulae = ( formulaA, formulaB ) => {
     for (let [key, value] of formulaB.entries()) {
         //The chem element is already in formulaA, so add new number of atoms to original number.
         if ( formulaA.has( key ) ) {
-            let ValA = formulaA.value( key );
-            ValA += value;
+            let valA = formulaA.get( key );
+            valA += value;
             formulaA.set( key, valA);
         } else {
             //The chem element is not in formula, so add new chem element with number of atoms.
@@ -28,13 +28,15 @@ makeMolFormula = function( chemFormula ) {
     //Parsing algorithm uses next character to decide what to do with previous one,
     //so need a stop character.
     // Note: currently assumes totally correct input.
-    chemFormula = chemFormula + '@'    
+    chemFormula = chemFormula + '@'
 
     atoms = new Map();
-    CurrChar = chemFormula.slice(0);
+    molFormula = new Map();
+    currChar = chemFormula.slice(0, 1);
+    currChemSymb = currChar;
 
     for (let i = 1; i < chemFormula.length; i++) {
-        nextChar = chemFormula.slice(i);
+        nextChar = chemFormula.slice( i, i+1 );
         if ( isDigit( currChar ) ) {
             if ( isDigit( nextChar ) ) {
                 //Continuing a number
@@ -52,42 +54,54 @@ makeMolFormula = function( chemFormula ) {
                 currNumString = nextChar;
             } else if ( isUppercase( nextChar ) ) {
                 //End of a chem symbol for which the number of atoms must be 1
-                atoms.set( currSymb, number(1) )
+                atoms.set( currChemSymb, Number(1) );
                 molFormula = mergeFormulae ( molFormula, atoms );
                 //Start a new symbol
                 currChemSymb = nextChar;    
             } else {
                 //Otherwise nextChar must be lowercase - continue symbol
-                currSymb += nextChar;
+                currChemSymb += nextChar;
             }
         }
         atoms.clear();
         currChar = nextChar;
     }
+    return molFormula;
 }
 
 function makeOutputString( molFormula ) {
-    var outString;
-    for (let [key, value] of molFormula.entries()) {
-        outString += key + '<span>' + value + '</span>';
+    var outString = "";
+    for (let [key, value] of molFormula.entries() ) {
+        if ( value === 1 ) {
+            outString += key;    
+        } else {
+            outString += key + '<span>' + value + '</span>';
+        }
     }
+    return outString;
 }
 
 currMolFormula = new Map();
-var currOutputString;
+var currChemFormula, currMolFormula, currOutputString, outputPara;
 var inputForm = document.getElementById( 'input-form' );
+var inputBox = document.getElementById( 'chem-formula-input' );
+inputBox.value = 'CH3'
 
 // Form submission listener
 inputForm.addEventListener( 'submit', function ( event ) {
     event.preventDefault();
     // Get the input
-    var currChemFormula = document.getElementById( 'chem-formula-input' ).value;
+    currChemFormula = inputBox.value;
+
+    currMolFormula = makeMolFormula( currChemFormula );
+
+    currOutputString = makeOutputString ( currMolFormula );
+    
+    // Set communication output element
+    outputPara = document.getElementById( 'output' );
+    // outputPara.textContent = 'test';
+    outputPara.innerHTML = currOutputString;
+
 } );
 
-currMolFormula = makeMolFormula( currChemFormula );
-currOutputString = makeOutputString ( currMolFormula );
-
-// Set communication output element
-var outputPara = document.getElementById( 'output');
-outputPara.innerHTML = currOutputString;
 
