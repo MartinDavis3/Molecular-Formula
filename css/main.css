@@ -23,11 +23,12 @@ form label, form input {
     margin-bottom: 16px;
 }
 
-#output {
+#output p {
     font-size: 20px;
+    margin-top: 20px;
 }
 
-#output span {
+#output sub {
     vertical-align: sub;
     font-size: 18px;
 }
