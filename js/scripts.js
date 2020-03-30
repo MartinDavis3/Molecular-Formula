@@ -127,7 +127,7 @@ var inputBox = document.getElementById( 'chem-formula-input' );
 // Form submission listener
 inputForm.addEventListener( 'submit', function ( event ) {
     event.preventDefault();
-    // Get the input
+
     currChemFormula = inputBox.value;
 
     currMolFormula = makeMolFormula( currChemFormula );
