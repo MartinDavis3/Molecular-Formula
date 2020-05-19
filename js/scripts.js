@@ -48,8 +48,9 @@ const multiplyFormula = ( formula, x ) => {
 
 const getSubFormula = ( chemForm, i ) => {
     //Routine returns an array containing:
-    //subformula, number of repeats of subformula,
-    //character position after end of repeats number
+    //subformula,
+    //number of repeats of subformula,
+    //character position of end of subformula repeats number
     var j, endNum, numStr, bracketOpen, bracketClose;
     var subForm = [];
     bracketOpen = chemForm.slice( i, i+1 );
@@ -78,9 +79,39 @@ const getSubFormula = ( chemForm, i ) => {
     //If no number part, then it is 1.
     if ( numStr === "" ) { numStr = "1" }
     subForm[1] = Number( numStr );
-    //The position where the main formula restarts is the current position
-    subForm[2] = Number(j);
+    //The position where the sub formula ends is one before the current position
+    subForm[2] = Number(j-1);
+    console.log(subForm);
     return subForm;
+}
+
+//Function to sort a formula held as a map into standard chemical order (Hill System).
+const sortHillSystem = ( formulaMap ) => {
+    //Contruct compare function to use. This only needs to return 1 or -1. No 0 required as map cannot repeat key.
+    let compareFunction
+    if ( formulaMap.has('C') ) {
+        //Formula contains C, so C first, followed by, H followed by not C or H in alphabetic order.
+        compareFunction = ( a, b ) => {
+            if ( ( a[0] === 'C' ) || ( a[0] === 'H' && b[0] !== 'C' ) ) {
+                //C is first, or H is first followed by something which is not C, then order is correct.
+                return -1
+            } else if ( ( b[0] === 'C' ) || ( b[0] === 'H' && a[0] !== 'C' ) ) {
+                //C is second, or H is second, preceded by something which is not C, then order is incorrect.
+                return 1
+            } else {
+                //Neither a or b are C or H, so compare just by alphabetic order.
+                if ( a[0] < b[0] ) {
+                    return -1
+                } else {
+                    return 1
+                }
+            }
+        }
+    } else {
+        //Formula does not contain C, so sort just by alphabetic order.
+        compareFunction = ( a, b ) => a[0] > b[0] ? 1 : -1
+    }
+    return new Map( [...formulaMap].sort( compareFunction ) );
 }
 
 const makeMolFormula = ( chemFormula ) => {
@@ -92,7 +123,8 @@ const makeMolFormula = ( chemFormula ) => {
     //Parsing algorithm uses next character to decide what to do,
     //so need a stop character.
     //Note: assumes totally correct input.
-    chemFormula = chemFormula + '@';
+    chemFormula = '@' + chemFormula + '@';
+    console.log(chemFormula);
 
     currChemSymb = chemFormula.slice(0, 1);
     parsingNum = false;
@@ -114,10 +146,10 @@ const makeMolFormula = ( chemFormula ) => {
             atoms = multiplyFormula( atoms, subFormula[1] );
             //Merge the sub formula with the main formula
             molFormula = mergeFormulae ( molFormula, atoms );
-            //Now need to start processing formula after end of subFormula
+            //Now need to start processing formula from end of subFormula
             i = subFormula[2];
             parsingNum = false;
-            currChemSymb = chemFormula.slice(i, i+1);
+            currChemSymb = '@';
         } else if ( parsingNum ) {
             if ( isDigit( nextChar ) ) {
                 //Continuing a number
@@ -149,6 +181,7 @@ const makeMolFormula = ( chemFormula ) => {
         atoms.clear();
         i++
     }
+    molFormula.delete('@')
     return molFormula;
 }
 
@@ -197,7 +230,7 @@ inputForm.addEventListener( 'submit', function ( event ) {
 
     currChemFormula = inputBox.value;
 
-    currMolFormula = makeMolFormula( currChemFormula );
+    currMolFormula = sortHillSystem( makeMolFormula( currChemFormula ) );
     currOutputString = makeOutputString ( currMolFormula );
     
     outputFormula = document.getElementById( 'mol-formula' );
