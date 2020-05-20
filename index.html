@@ -20,7 +20,8 @@
                 <form id="input-form" action="#" method="GET">
                     <label for="chem-formula-input">
                         Enter a chemical formula *
-                        <input id="chem-formula-input" name="guess-input" type="text" autocomplete="off">
+                        <input id="chem-formula-input" name="chem-formula-input" type="text" onclick="clearAll()" autocomplete="off">
+                        <output id="error-message"></output>
                     </label>
                     <input id="submit" type="submit" value="Enter">
                 </form>
@@ -31,7 +32,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Element</th><th>Atomic %</th><th>Weight %</th>
+                            <th>Element</th><th>Mole %</th><th>Weight %</th>
                         </tr>
                     </thead>
                     <tbody id="table-output">

@@ -230,15 +230,26 @@ const calculateNumberOfAtoms = ( molFormula ) => {
     return totNumAtoms;
 }
 
+const clearAll = () => {
+    errorMessageElement.innerHTML = '|';
+    molecularFormulaElement.innerHTML = '';
+    molecularWeightElement.innerHTML = '';
+    tableElement.innerHTML = '';
+}
+
 //Main programme
 const tableDecimalPlaces = 3;
 var chemicalFormula, totalAtoms, molecularWeight;
 var molecularFormula = new Map();
 var molecularWeightAndSd = [];
 var outputString
-var molecularFormulaElement, molecularWeightElement, tableElement;
 var inputForm = document.getElementById( 'input-form' );
 var inputBox = document.getElementById( 'chem-formula-input' );
+const molecularFormulaElement = document.getElementById( 'mol-formula' );
+const errorMessageElement = document.getElementById( 'error-message' );
+const molecularWeightElement = document.getElementById( 'mol-weight' );
+const tableElement = document.getElementById( 'table-output' );    
+clearAll();
 
 // Form submission listener
 inputForm.addEventListener( 'submit', function ( event ) {
@@ -250,23 +261,23 @@ inputForm.addEventListener( 'submit', function ( event ) {
     molecularWeightAndSd = calculateMolecularWeightAndSd( molecularFormula );
     molecularWeight = molecularWeightAndSd[0];
 
-    if ( molecularWeight !== undefined ) {
+    if ( molecularWeight === undefined || isNaN(molecularWeight) ) {
+        errorMessageElement.innerHTML = 'Error in Formula!';
+    } else {
     
-        molecularFormulaElement = document.getElementById( 'mol-formula' );
+        // molecularFormulaElement = document.getElementById( 'mol-formula' );
         molecularFormulaElement.innerHTML = molecularFormulaToString ( molecularFormula );
         
-        molecularWeightElement = document.getElementById( 'mol-weight' );
         molecularWeightElement.innerHTML = molecularWeightToString( molecularWeightAndSd );
 
         totalAtoms = calculateNumberOfAtoms( molecularFormula );
 
-        tableElement = document.getElementById( 'table-output' );    
         outputString = '';
         for (let [ chemicalSymbol, numberOfAtoms ] of molecularFormula.entries() ) {
             outputString += '<tr>';
             outputString += '<td>' + chemicalSymbol + '</td>';
-            let atomicPercent = 100 * numberOfAtoms / totalAtoms;
-            outputString += '<td class="numeric-field">' + atomicPercent.toFixed( tableDecimalPlaces ) + '</td>';
+            let molePercent = 100 * numberOfAtoms / totalAtoms;
+            outputString += '<td class="numeric-field">' + molePercent.toFixed( tableDecimalPlaces ) + '</td>';
             let atomsWeight = Number( numberOfAtoms ) * Number( atomicWeight.get( chemicalSymbol ) );
             let weightPercent = 100 * atomsWeight / molecularWeight;
             outputString += '<td class="numeric-field">' + weightPercent.toFixed( tableDecimalPlaces ) + '</td>';
@@ -275,5 +286,5 @@ inputForm.addEventListener( 'submit', function ( event ) {
         tableElement.innerHTML = outputString;
 
     }
-    
+
 } );

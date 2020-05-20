@@ -27,12 +27,17 @@ form input {
     padding: 2px;
 }
 
-#output p {
-    font-size: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+#error-message {
+    line-height: 18px;
 }
 
+#output p {
+    font-size: 20px;
+    line-height: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+  
 sub {
     vertical-align: sub;
     font-size: 16px;
@@ -42,7 +47,6 @@ table {
     max-width: 550px;
     border: 1px solid black;
     border-collapse: collapse;
-
 }
 
 th,
