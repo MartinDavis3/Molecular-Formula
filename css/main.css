@@ -11,12 +11,15 @@ h1 {
     margin: 24px;
 }
 
-header, article, footer {
-    width: 550px;
+header,
+article,
+footer {
+    max-width: 550px;
     margin: 24px;
 }
 
-form label, form input {
+form label,
+form input {
     display: block;
     width: 230px;
     font-size: 18px;
@@ -36,18 +39,29 @@ sub {
 }
 
 table {
-    width: 50%;
-    /* height: 30px; */
+    max-width: 550px;
     border: 1px solid black;
     border-collapse: collapse;
 
 }
 
-th, td {
+th,
+td {
+    height: 26px;    
     text-align: center;
     vertical-align: middle;
+    padding-left: 13px;
+    padding-right: 13px;
     border: 1px solid black;
-    height: 26px;    
+}
+
+th {
+    font-weight: bold;
+}
+
+.numeric-field {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: right;
 }
 
 footer {

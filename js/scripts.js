@@ -3,6 +3,7 @@
 // Atomic weights from: International Union of Pure and Applied Chemistry,
 // Commission on isotopic abundances and atomic weights.
 // https://www.ciaaw.org/atomic-weights.htm
+// Retrieved Apr-2020
 const elmtSymb = ['H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne', 'Na', 'Mg', 'Al', 'Si', 'P', 'S', 'Cl', 'Ar', 'K', 'Ca', 'Sc', 'Ti', 'V', 'Cr', 'Mn', 'Fe', 'Co', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 'Se', 'Br', 'Kr', 'Rb', 'Sr', 'Y', 'Zr', 'Nb', 'Mo', 'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn', 'Sb', 'Te', 'I', 'Xe', 'Cs', 'Ba', 'La', 'Ce', 'Pr', 'Nd', 'Sm', 'Eu', 'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu', 'Hf', 'Ta', 'W', 'Re', 'Os', 'Ir', 'Pt', 'Au', 'Hg', 'Tl', 'Pb', 'Bi', 'Th', 'Pa', 'U'];
 const atWt = ['1.00784', '4.002602', '6.938', '9.0121831', '10.806', '12.0096', '14.00643', '15.99903', '18.998403163', '20.1797', '22.98976928', '24.304', '26.9815384', '28.084', '30.973761998', '32.059', '35.446', '39.792', '39.0983', '40.078', '44.955908', '47.867', '50.9415', '51.9961', '54.938043', '55.845', '58.933194', '58.6934', '63.546', '65.38', '69.723', '72.63', '74.921595', '78.971', '79.901', '83.798', '85.4678', '87.62', '88.90584', '91.224', '92.90637', '95.95', '101.07', '102.90549', '106.42', '107.8682', '112.414', '114.818', '118.71', '121.76', '127.6', '126.90447', '131.293', '132.90545196', '137.327', '138.90547', '140.116', '140.90766', '144.242', '150.36', '151.964', '157.25', '158.925354', '162.5', '164.930328', '167.259', '168.934218', '173.045', '174.9668', '178.486', '180.94788', '183.84', '186.207', '190.23', '192.217', '195.084', '196.96657', '200.592', '204.382', '207.2', '208.9804', '232.0377', '231.03588', '238.02891'];
 const atWtVar = ['6.07499999999966E-09', '1.33333333370607E-12', '2.90083333333335E-04', '8.33333335046594E-14', '1.87500000000014E-05', '3.33333333332964E-07', '6.02083333333044E-08', '4.56333333333835E-08', '1.2000001985769E-17', '1.19999999999441E-07', '1.33333355397433E-16', '7.50000000000057E-07', '2.99999999906231E-14', '3.33333333332964E-07', '8.33333471233957E-18', '2.40833333333419E-05', '1.00833333333384E-05', '2.43674999999998E-03', '3.33333333355464E-09', '5.33333333332742E-06', '8.33333333862356E-12', '3.3333333333178E-07', '3.33333333355464E-09', '1.19999999999441E-07', '1.33333333607455E-12', '1.33333333333659E-06', '2.99999999906231E-12', '5.33333333330847E-08', '3.00000000000023E-06', '1.3333333333328E-04', '3.33333333336517E-07', '2.13333333333324E-03', '1.19999999962492E-11', '2.13333333333097E-05', '3.00000000000023E-06', '1.33333333332712E-06', '2.99999999991496E-08', '3.33333333333674E-05', '3.33333333544942E-11', '1.33333333332712E-06', '3.33333333544942E-11', '3.33333333333674E-05', '1.3333333333328E-04', '1.33333333417977E-10', '3.33333333333674E-05', '1.33333333342186E-08', '5.33333333334637E-06', '3.33333333336517E-07', '1.63333333333301E-03', '3.33333333333674E-05', '2.99999999999994E-02', '2.99999999906231E-10', '1.20000000000009E-05', '1.19999963014273E-15', '1.63333333333567E-05', '1.63333333304387E-09', '3.33333333336517E-07', '3.33333333544942E-11', '2.99999999997181E-06', '1.3333333333347E-04', '3.33333333336517E-07', '3.00000000000023E-04', '2.13333333771928E-11', '3.33333333333295E-03', '1.63333333834926E-11', '2.99999999997181E-06', '1.20000000530927E-11', '3.33333333336517E-07', '3.33333333355464E-09', '1.20000000000009E-05', '1.33333333417977E-10', '3.33333333332727E-05', '3.33333333336517E-07', '3.00000000000023E-04', '1.33333333334607E-06', '2.69999999999168E-05', '5.33333333671908E-10', '2.99999999997181E-06', '7.49999999992951E-07', '3.33333333333295E-03', '3.33333333355464E-09', '5.33333333368743E-08', '3.33333333544942E-11', '3.00000000190448E-10']
@@ -13,17 +14,14 @@ for ( let i = 0; i < elmtSymb.length; i++) {
     atomicWeightVariance.set( elmtSymb[i], atWtVar[i] );
 }
 
-// My functions
-
 const isDigit = ( testChar ) => {
     let cc = testChar.charCodeAt( 0 );
     return cc > 47 && cc < 58; 
 }
 
-//braces not obligatory, but prefer consistent syntax.
-const isUppercase = ( testChar ) => { return testChar === testChar.toUpperCase() }
+const isUppercase = ( testChar ) => testChar === testChar.toUpperCase()
 
-const isOpenBracket = ( testChar ) => { return ( testChar === "(" || testChar === "[" || testChar === "{" ) }
+const isOpenBracket = ( testChar ) => ( testChar === "(" || testChar === "[" || testChar === "{" ) 
 
 const mergeFormulae = ( formulaA, formulaB ) => {
     //Combines two formulae, held in seperate maps, into a new formula in the returned map.
@@ -54,17 +52,17 @@ const getSubFormula = ( chemForm, i ) => {
     //subformula,
     //number of repeats of subformula,
     //character position of end of subformula repeats number
-    var j, endNum, numStr, bracketOpen, bracketClose;
-    var subForm = [];
+    let j, endNum, numStr, bracketOpen, bracketClose;
+    let subForm = [];
     bracketOpen = chemForm.slice( i, i+1 );
-    if (bracketOpen === "(") {
+    if ( bracketOpen === "(" ) {
         bracketClose = ")";
-    } else if (bracketOpen === "[") {
+    } else if ( bracketOpen === "[" ) {
         bracketClose = "]";
-    } else if (bracketOpen === "{") {
+    } else if ( bracketOpen === "{" ) {
         bracketClose = "}";
     }
-    j = chemForm.indexOf( bracketClose, i+1 );
+    j = chemForm.indexOf( bracketClose, i + 1 );
     //Subform is part between the brackets
     subForm[0] = chemForm.slice( i + 1, j );
     //Now iterate over number part until a non-digit is found
@@ -83,8 +81,7 @@ const getSubFormula = ( chemForm, i ) => {
     if ( numStr === "" ) { numStr = "1" }
     subForm[1] = Number( numStr );
     //The position where the sub formula ends is one before the current position
-    subForm[2] = Number(j-1);
-    console.log(subForm);
+    subForm[2] = Number( j - 1 );
     return subForm;
 }
 
@@ -93,7 +90,7 @@ const sortHillSystem = ( formulaMap ) => {
     //Contruct compare function to use. This only needs to return 1 or -1. No 0 required as map cannot repeat key.
     let compareFunction
     if ( formulaMap.has('C') ) {
-        //Formula contains C, so C first, followed by, H followed by not C or H in alphabetic order.
+        //Formula contains C, so C first, followed by H, followed by not C or H in alphabetic order.
         compareFunction = ( a, b ) => {
             if ( ( a[0] === 'C' ) || ( a[0] === 'H' && b[0] !== 'C' ) ) {
                 //C is first, or H is first followed by something which is not C, then order is correct.
@@ -117,34 +114,33 @@ const sortHillSystem = ( formulaMap ) => {
     return new Map( [...formulaMap].sort( compareFunction ) );
 }
 
-const makeMolFormula = ( chemFormula ) => {
-    var i, nextChar, currChemSymb, currNumString;
-    var parsingNum;
-    var atoms = new Map();
-    var molFormula = new Map();
-    var subFormula = [];
-    //Parsing algorithm uses next character to decide what to do,
-    //so need a stop character.
+const makeMolecularFormula = ( chemFormula ) => {
+    let i, nextChar, currChemSymb, currNumString;
+    let parsingNum;
+    let atoms = new Map();
+    let molFormula = new Map();
+    let subFormula = [];
+    //Parsing algorithm uses next character to decide what to do, so use @ a stop character.
+    //The character @ is also use as a dummy element to help with parsing.
+    //It is removed from the map at the end.
     //Note: assumes totally correct input.
     chemFormula = '@' + chemFormula + '@';
-    console.log(chemFormula);
-
     currChemSymb = chemFormula.slice(0, 1);
     parsingNum = false;
     currNumString = "";
     i = 1;
     while ( i < chemFormula.length ) {
-        nextChar = chemFormula.slice( i, i+1 );
+        nextChar = chemFormula.slice( i, i + 1 );
         if ( isOpenBracket( nextChar ) ) {
             //If there is no number, then it is 1.
-            if ( currNumString === "" ) { currNumString="1"} 
+            if ( currNumString === "" ) { currNumString = "1" } 
             //Add current atoms to molecular formular
             atoms.set( currChemSymb, Number( currNumString ) );
             molFormula = mergeFormulae( molFormula, atoms );
             //Get the part of the formula related to the brackets
             subFormula = getSubFormula( chemFormula, i);
             //Get the atoms in the sub formula by recursive call
-            atoms = makeMolFormula( subFormula[0] );
+            atoms = makeMolecularFormula( subFormula[0] );
             //Multiply by the number of repeats of the sub formula
             atoms = multiplyFormula( atoms, subFormula[1] );
             //Merge the sub formula with the main formula
@@ -188,9 +184,9 @@ const makeMolFormula = ( chemFormula ) => {
     return molFormula;
 }
 
-const makeOutputString = ( molFormula ) => {
-    var outString = '';
-    for (let [key, value] of molFormula.entries() ) {
+const molecularFormulaToString = ( molFormula ) => {
+    let outString = '';
+    for (let [ key, value ] of molFormula.entries() ) {
         if ( value === 1 ) {
             outString += key;    
         } else {
@@ -200,13 +196,13 @@ const makeOutputString = ( molFormula ) => {
     return outString;
 }
 
-const calcMolWeight = ( molFormula ) => {
+const calculateMolecularWeightAndSd = ( molFormula ) => {
     //Calculates molecular weight value and standard deviation from the supplied formula map.
     //Returns an array: [molecular weight, standard deviation].
     let molWeight = Number( 0 );
     let molWeightVariance = Number( 0 );
     for (let [chemSymb, numberOfAtoms] of molFormula.entries() ) {
-        let numAtoms = Number(numberOfAtoms)
+        let numAtoms = Number( numberOfAtoms )
         if ( atomicWeight.has( chemSymb ) ) {
             molWeight += numAtoms * Number( atomicWeight.get( chemSymb ) );   
             molWeightVariance += numAtoms * numAtoms * Number( atomicWeightVariance.get( chemSymb ) );   
@@ -215,32 +211,32 @@ const calcMolWeight = ( molFormula ) => {
             molWeightVariance = undefined;
         }
     }
-    return [molWeight, Math.sqrt(molWeightVariance)];
+    return [molWeight, Math.sqrt( molWeightVariance )];
 }
 
-const molecularWeightToString = ( molecularWeight ) => {
+const molecularWeightToString = ( molecularWeightAndSd ) => {
     //Returns molecular weight in standard value(sd) format.
-    const molWeightValue = molecularWeight[0];
-    const sd = molecularWeight[1];
-    const sdRounded = Number( sd.toPrecision(1) );
-    const sdDecimalPlaces = -Math.floor(Math.log10(sdRounded));
-    const sdDigit = Math.round (sdRounded * Math.pow(10, sdDecimalPlaces) );
-    return molWeightValue.toFixed(sdDecimalPlaces) + '(' + sdDigit + ')';
+    const sdRounded = Number( molecularWeightAndSd[1].toPrecision(1) );
+    const sdDecimalPlaces = -Math.floor( Math.log10( sdRounded ) );
+    const sdDigit = Math.round ( sdRounded * Math.pow( 10, sdDecimalPlaces ) );
+    return molecularWeightAndSd[0].toFixed( sdDecimalPlaces ) + '(' + sdDigit + ')';
 }
 
-const calcNumAtoms = ( molFormula ) => {
-    var totNumAtoms = Number( 0 );
+const calculateNumberOfAtoms = ( molFormula ) => {
+    let totNumAtoms = Number( 0 );
     for (let [chemSymb, numAtoms] of molFormula.entries() ) {
             totNumAtoms += Number( numAtoms );   
     }
     return totNumAtoms;
 }
 
-const outTableDecimalPlaces = 3;
-var currChemFormula, currOutputString, currNumAtoms, currMolWt;
-var currMolFormula = new Map();
-var currMolecularWeight = [];
-var outputFormula, outputMolWt, outputTable;
+//Main programme
+const tableDecimalPlaces = 3;
+var chemicalFormula, totalAtoms, molecularWeight;
+var molecularFormula = new Map();
+var molecularWeightAndSd = [];
+var outputString
+var molecularFormulaElement, molecularWeightElement, tableElement;
 var inputForm = document.getElementById( 'input-form' );
 var inputBox = document.getElementById( 'chem-formula-input' );
 
@@ -248,33 +244,36 @@ var inputBox = document.getElementById( 'chem-formula-input' );
 inputForm.addEventListener( 'submit', function ( event ) {
     event.preventDefault();
 
-    currChemFormula = inputBox.value;
+    chemicalFormula = inputBox.value;
 
-    currMolFormula = sortHillSystem( makeMolFormula( currChemFormula ) );
-    currOutputString = makeOutputString ( currMolFormula );
+    molecularFormula = sortHillSystem( makeMolecularFormula( chemicalFormula ) );
+    molecularWeightAndSd = calculateMolecularWeightAndSd( molecularFormula );
+    molecularWeight = molecularWeightAndSd[0];
+
+    if ( molecularWeight !== undefined ) {
     
-    outputFormula = document.getElementById( 'mol-formula' );
-    outputFormula.innerHTML = currOutputString;
-    
-    outputMolWt = document.getElementById( 'mol-weight' );
-    currMolecularWeight = calcMolWeight( currMolFormula );
-    outputMolWt.innerHTML = molecularWeightToString( currMolecularWeight );
-    currMolWt = currMolecularWeight[0];
+        molecularFormulaElement = document.getElementById( 'mol-formula' );
+        molecularFormulaElement.innerHTML = molecularFormulaToString ( molecularFormula );
+        
+        molecularWeightElement = document.getElementById( 'mol-weight' );
+        molecularWeightElement.innerHTML = molecularWeightToString( molecularWeightAndSd );
 
-    currNumAtoms = calcNumAtoms( currMolFormula );
+        totalAtoms = calculateNumberOfAtoms( molecularFormula );
 
-    outputTable = document.getElementById( 'table-output' );    
-    currOutputString = '';
-    for (let [chemSymb, numAtoms] of currMolFormula.entries() ) {
-        currOutputString += '<tr>';
-        currOutputString += '<td>' + chemSymb + '</td>';
-        let atMolPercent= 100 * numAtoms / currNumAtoms;
-        currOutputString += '<td>' + atMolPercent.toFixed(outTableDecimalPlaces) + '</td>';
-        let atomsWeight = Number( numAtoms ) * Number( atomicWeight.get( chemSymb ) );
-        let atWtPercent = 100 * atomsWeight / currMolWt;
-        currOutputString += '<td>' + atWtPercent.toFixed(outTableDecimalPlaces) + '</td>';
-        currOutputString += '</tr>';
+        tableElement = document.getElementById( 'table-output' );    
+        outputString = '';
+        for (let [ chemicalSymbol, numberOfAtoms ] of molecularFormula.entries() ) {
+            outputString += '<tr>';
+            outputString += '<td>' + chemicalSymbol + '</td>';
+            let atomicPercent = 100 * numberOfAtoms / totalAtoms;
+            outputString += '<td class="numeric-field">' + atomicPercent.toFixed( tableDecimalPlaces ) + '</td>';
+            let atomsWeight = Number( numberOfAtoms ) * Number( atomicWeight.get( chemicalSymbol ) );
+            let weightPercent = 100 * atomsWeight / molecularWeight;
+            outputString += '<td class="numeric-field">' + weightPercent.toFixed( tableDecimalPlaces ) + '</td>';
+            outputString += '</tr>';
+        }
+        tableElement.innerHTML = outputString;
+
     }
-    outputTable.innerHTML = currOutputString;
-
+    
 } );
