@@ -10,4 +10,4 @@ International Union of Pure and Applied Chemistry, Commission on isotopic abunda
 
 The molecular weight is given with the standard deviation in the last decimal place in parentheses following the value.
 
-A table of the Atomic % and Weight % (to 3 decimal places) for each element is also given.
+A table of the Mole % and Weight % (to 3 decimal places) for each element is also given.
