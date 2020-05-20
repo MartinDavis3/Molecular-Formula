@@ -4,10 +4,13 @@
 // Commission on isotopic abundances and atomic weights.
 // https://www.ciaaw.org/atomic-weights.htm
 const elmtSymb = ['H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne', 'Na', 'Mg', 'Al', 'Si', 'P', 'S', 'Cl', 'Ar', 'K', 'Ca', 'Sc', 'Ti', 'V', 'Cr', 'Mn', 'Fe', 'Co', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 'Se', 'Br', 'Kr', 'Rb', 'Sr', 'Y', 'Zr', 'Nb', 'Mo', 'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn', 'Sb', 'Te', 'I', 'Xe', 'Cs', 'Ba', 'La', 'Ce', 'Pr', 'Nd', 'Sm', 'Eu', 'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu', 'Hf', 'Ta', 'W', 'Re', 'Os', 'Ir', 'Pt', 'Au', 'Hg', 'Tl', 'Pb', 'Bi', 'Th', 'Pa', 'U'];
-const atWt =['1.00784', '4.002602', '6.938', '9.0121831', '10.806', '12.0096', '14.00643', '15.99903', '18.998403163', '20.1797', '22.98976928', '24.304', '26.9815384', '28.084', '30.973761998', '32.059', '35.446', '39.792', '39.0983', '40.078', '44.955908', '47.867', '50.9415', '51.9961', '54.938043', '55.845', '58.933194', '58.6934', '63.546', '65.38', '69.723', '72.63', '74.921595', '78.971', '79.901', '83.798', '85.4678', '87.62', '88.90584', '91.224', '92.90637', '95.95', '101.07', '102.90549', '106.42', '107.8682', '112.414', '114.818', '118.71', '121.76', '127.6', '126.90447', '131.293', '132.90545196', '137.327', '138.90547', '140.116', '140.90766', '144.242', '150.36', '151.964', '157.25', '158.925354', '162.5', '164.930328', '167.259', '168.934218', '173.045', '174.9668', '178.486', '180.94788', '183.84', '186.207', '190.23', '192.217', '195.084', '196.96657', '200.592', '204.382', '207.2', '208.9804', '232.0377', '231.03588', '238.02891'];
+const atWt = ['1.00784', '4.002602', '6.938', '9.0121831', '10.806', '12.0096', '14.00643', '15.99903', '18.998403163', '20.1797', '22.98976928', '24.304', '26.9815384', '28.084', '30.973761998', '32.059', '35.446', '39.792', '39.0983', '40.078', '44.955908', '47.867', '50.9415', '51.9961', '54.938043', '55.845', '58.933194', '58.6934', '63.546', '65.38', '69.723', '72.63', '74.921595', '78.971', '79.901', '83.798', '85.4678', '87.62', '88.90584', '91.224', '92.90637', '95.95', '101.07', '102.90549', '106.42', '107.8682', '112.414', '114.818', '118.71', '121.76', '127.6', '126.90447', '131.293', '132.90545196', '137.327', '138.90547', '140.116', '140.90766', '144.242', '150.36', '151.964', '157.25', '158.925354', '162.5', '164.930328', '167.259', '168.934218', '173.045', '174.9668', '178.486', '180.94788', '183.84', '186.207', '190.23', '192.217', '195.084', '196.96657', '200.592', '204.382', '207.2', '208.9804', '232.0377', '231.03588', '238.02891'];
+const atWtVar = ['6.07499999999966E-09', '1.33333333370607E-12', '2.90083333333335E-04', '8.33333335046594E-14', '1.87500000000014E-05', '3.33333333332964E-07', '6.02083333333044E-08', '4.56333333333835E-08', '1.2000001985769E-17', '1.19999999999441E-07', '1.33333355397433E-16', '7.50000000000057E-07', '2.99999999906231E-14', '3.33333333332964E-07', '8.33333471233957E-18', '2.40833333333419E-05', '1.00833333333384E-05', '2.43674999999998E-03', '3.33333333355464E-09', '5.33333333332742E-06', '8.33333333862356E-12', '3.3333333333178E-07', '3.33333333355464E-09', '1.19999999999441E-07', '1.33333333607455E-12', '1.33333333333659E-06', '2.99999999906231E-12', '5.33333333330847E-08', '3.00000000000023E-06', '1.3333333333328E-04', '3.33333333336517E-07', '2.13333333333324E-03', '1.19999999962492E-11', '2.13333333333097E-05', '3.00000000000023E-06', '1.33333333332712E-06', '2.99999999991496E-08', '3.33333333333674E-05', '3.33333333544942E-11', '1.33333333332712E-06', '3.33333333544942E-11', '3.33333333333674E-05', '1.3333333333328E-04', '1.33333333417977E-10', '3.33333333333674E-05', '1.33333333342186E-08', '5.33333333334637E-06', '3.33333333336517E-07', '1.63333333333301E-03', '3.33333333333674E-05', '2.99999999999994E-02', '2.99999999906231E-10', '1.20000000000009E-05', '1.19999963014273E-15', '1.63333333333567E-05', '1.63333333304387E-09', '3.33333333336517E-07', '3.33333333544942E-11', '2.99999999997181E-06', '1.3333333333347E-04', '3.33333333336517E-07', '3.00000000000023E-04', '2.13333333771928E-11', '3.33333333333295E-03', '1.63333333834926E-11', '2.99999999997181E-06', '1.20000000530927E-11', '3.33333333336517E-07', '3.33333333355464E-09', '1.20000000000009E-05', '1.33333333417977E-10', '3.33333333332727E-05', '3.33333333336517E-07', '3.00000000000023E-04', '1.33333333334607E-06', '2.69999999999168E-05', '5.33333333671908E-10', '2.99999999997181E-06', '7.49999999992951E-07', '3.33333333333295E-03', '3.33333333355464E-09', '5.33333333368743E-08', '3.33333333544942E-11', '3.00000000190448E-10']
 var atomicWeight = new Map();
+var atomicWeightVariance = new Map();
 for ( let i = 0; i < elmtSymb.length; i++) {
     atomicWeight.set( elmtSymb[i], atWt[i] );
+    atomicWeightVariance.set( elmtSymb[i], atWtVar[i] );
 }
 
 // My functions
@@ -198,15 +201,31 @@ const makeOutputString = ( molFormula ) => {
 }
 
 const calcMolWeight = ( molFormula ) => {
-    var molWeight = Number( 0 );
-    for (let [chemSymb, numAtoms] of molFormula.entries() ) {
+    //Calculates molecular weight value and standard deviation from the supplied formula map.
+    //Returns an array: [molecular weight, standard deviation].
+    let molWeight = Number( 0 );
+    let molWeightVariance = Number( 0 );
+    for (let [chemSymb, numberOfAtoms] of molFormula.entries() ) {
+        let numAtoms = Number(numberOfAtoms)
         if ( atomicWeight.has( chemSymb ) ) {
-            molWeight += Number( numAtoms ) * Number( atomicWeight.get( chemSymb ) );   
+            molWeight += numAtoms * Number( atomicWeight.get( chemSymb ) );   
+            molWeightVariance += numAtoms * numAtoms * Number( atomicWeightVariance.get( chemSymb ) );   
         } else {
             molWeight = undefined;
+            molWeightVariance = undefined;
         }
     }
-    return molWeight;
+    return [molWeight, Math.sqrt(molWeightVariance)];
+}
+
+const molecularWeightToString = ( molecularWeight ) => {
+    //Returns molecular weight in standard value(sd) format.
+    const molWeightValue = molecularWeight[0];
+    const sd = molecularWeight[1];
+    const sdRounded = Number( sd.toPrecision(1) );
+    const sdDecimalPlaces = -Math.floor(Math.log10(sdRounded));
+    const sdDigit = Math.round (sdRounded * Math.pow(10, sdDecimalPlaces) );
+    return molWeightValue.toFixed(sdDecimalPlaces) + '(' + sdDigit + ')';
 }
 
 const calcNumAtoms = ( molFormula ) => {
@@ -217,9 +236,10 @@ const calcNumAtoms = ( molFormula ) => {
     return totNumAtoms;
 }
 
-const outPrecisionTable = 4, outPrecisionMolWt = 6;
+const outTableDecimalPlaces = 3;
 var currChemFormula, currOutputString, currNumAtoms, currMolWt;
 var currMolFormula = new Map();
+var currMolecularWeight = [];
 var outputFormula, outputMolWt, outputTable;
 var inputForm = document.getElementById( 'input-form' );
 var inputBox = document.getElementById( 'chem-formula-input' );
@@ -237,8 +257,9 @@ inputForm.addEventListener( 'submit', function ( event ) {
     outputFormula.innerHTML = currOutputString;
     
     outputMolWt = document.getElementById( 'mol-weight' );
-    currMolWt = calcMolWeight( currMolFormula );
-    outputMolWt.innerHTML = currMolWt.toPrecision(outPrecisionMolWt);
+    currMolecularWeight = calcMolWeight( currMolFormula );
+    outputMolWt.innerHTML = molecularWeightToString( currMolecularWeight );
+    currMolWt = currMolecularWeight[0];
 
     currNumAtoms = calcNumAtoms( currMolFormula );
 
@@ -248,10 +269,10 @@ inputForm.addEventListener( 'submit', function ( event ) {
         currOutputString += '<tr>';
         currOutputString += '<td>' + chemSymb + '</td>';
         let atMolPercent= 100 * numAtoms / currNumAtoms;
-        currOutputString += '<td>' + atMolPercent.toPrecision(outPrecisionTable) + '</td>';
+        currOutputString += '<td>' + atMolPercent.toFixed(outTableDecimalPlaces) + '</td>';
         let atomsWeight = Number( numAtoms ) * Number( atomicWeight.get( chemSymb ) );
         let atWtPercent = 100 * atomsWeight / currMolWt;
-        currOutputString += '<td>' + atWtPercent.toPrecision(outPrecisionTable) + '</td>';
+        currOutputString += '<td>' + atWtPercent.toFixed(outTableDecimalPlaces) + '</td>';
         currOutputString += '</tr>';
     }
     outputTable.innerHTML = currOutputString;
